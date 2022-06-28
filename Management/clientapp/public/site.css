@@ -1,0 +1,229 @@
+﻿@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700,200";
+@import "https://use.fontawesome.com/releases/v5.7.1/css/all.css";
+@import "assets/css/bootstrap.min.css";
+@import "assets/css/now-ui-dashboard.css";
+@import "assets/demo/demo.css";
+
+
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #409EFF !important;
+    border-color: #409EFF !important;
+}
+
+/*.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #409EFF !important;
+    color: #FFF !important;
+}*/
+
+.panel-header {
+    height: 350px;
+    padding-top: 80px;
+    padding-bottom: 45px;
+    background: #141E30;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+    background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%)!important;
+}
+
+
+.navbar a:not(.btn):not(.dropdown-item) {
+    color: black!important;
+}
+
+
+.Filter {
+    display: block;
+}
+
+.el-radio__label {
+    font-size: 14px;
+    padding-right: 8px;
+} 
+
+
+body {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+.el-form--label-top .el-form-item__label {
+    float: none;
+    display: inline-block;
+    text-align: left;
+    padding: 0 0 0px !important;
+}
+
+ /********************** Custome ScrollBar ****************************/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /*******************************************************/
+
+.sidebar{
+    z-index:1;
+}
+
+.ps {
+    height: 400px;
+}
+
+.btn {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+@font-face {
+    font-family: 'DroidArabicKufiRegular';
+    src: url('fonts/DroidKufi-Regular.eot') format('embedded-opentype'), url('fonts/DroidKufi-Regular.woff') format('woff'), url('fonts/DroidKufi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.el-input__inner {
+    font-family: 'DroidArabicKufiRegular';
+}
+textarea {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+.DataSet {
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: -39px;
+}
+
+
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #f96332!important;
+    border-color: #f96332!important;
+}
+
+.btn-next {
+    border: 0;
+    border-radius: 30px !important;
+    
+}
+
+.btn-prev {
+    border: 0;
+    border-radius: 30px !important;
+}
+
+.number {
+    border: 0;
+    border-radius: 30px !important;
+    transition: all .3s;
+    padding: 0px 11px;
+    margin: 0 3px;
+    min-width: 30px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: #2c2c2c;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: transparent;
+    outline: none;
+}
+
+
+
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+.el-form-item__content label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.el-form-item__error {
+    left:unset;
+    right: 0;
+}
+
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width:100%;
+}
+
+.el-input--prefix .el-input__inner {
+    border-radius: 30px;
+}
+.el-input__inner {
+    border-radius: 30px;
+}
+
+.el-select {
+    width: 100%!important;
+}
+
+.fas {
+    font-size: 26px;
+    color:black!important;
+}
+
+.fa-On {
+    color: #eaff41 !important;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-off {
+    color:black!important;
+}
+
+td a {
+    padding: 6px;
+}
+
+.AddButtonLeftSide{
+    float:left;
+}
+

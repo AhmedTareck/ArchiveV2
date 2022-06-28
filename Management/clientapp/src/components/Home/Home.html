@@ -1,0 +1,194 @@
+﻿<div>
+
+
+
+
+    <div class="main-panel" id="main-panel" style="width:100%">
+        <!-- Navbar -->
+        <!-- End Navbar -->
+        <div class="panel-header panel-header-lg">
+            <canvas id="bigDashboardChart"></canvas>
+        </div>
+        <div class="content" style="margin-top:-250px">
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-success">
+                                                <i class="now-ui-icons education_paper"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.requestDone}}</h3>
+                                            <h6 class="stats-title">طلبات تم التعامل معها</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-danger">
+                                                <i class="now-ui-icons education_paper"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.request}}</h3>
+                                            <h6 class="stats-title">عدد الطلبات</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-warning">
+                                                <i class="now-ui-icons education_paper"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.imaddiat}}</h3>
+                                            <h6 class="stats-title">عدد النماذج الفورية</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-info">
+                                                <i class="now-ui-icons education_paper"></i>
+
+                                            </div>
+                                            <h3 class="info-title">{{Info.dailyforms}}</h3>
+                                            <h6 class="stats-title">عدد النماذج</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row" dir="rtl" style="text-align:right">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">اخر العمليات المظافة </h4>
+                            <p class="card-category">قائمة بأخر العمليات التي  تمت إضافتهم للنظام  </p>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="text-info">
+                                                    <tr>
+                                                        <th style="font-size: 1.063rem;text-align: center">#</th>
+                                                        <th style="font-size: 1.063rem;text-align: center" v-if="loginDetails.userType==1"> المستشفي</th>
+                                                        <th style="font-size: 1.063rem;text-align: center">  المرض</th>
+                                                        <th style="font-size: 1.063rem;text-align: center" v-if="loginDetails.userType==1"> الجهة</th>
+                                                        <th style="font-size: 1.063rem;text-align: center">عدد الحالات</th>
+                                                        <th style="font-size: 1.063rem;text-align: center">اسم الراصد</th>
+                                                        <th style="font-size: 1.063rem;text-align: center">تاريخ التبليغ</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="item,index in Info2">
+                                                        <td>
+                                                            {{index+1}}
+                                                        </td>
+                                                        <td class="td-name " style="text-align:center" v-if="loginDetails.userType==1">
+                                                            <a>{{item.hospital}}</a>
+                                                        </td>
+                                                        <td class="td-name " style="text-align:center">
+                                                            <a>{{item.diseaseName}}</a>
+                                                        </td>
+
+                                                        <td class="td-name " style="text-align:center" v-if="loginDetails.userType==1">
+                                                            <a>{{item.hospital}}</a>
+                                                        </td>
+                                                        <td class="td-name " style="text-align:center">
+                                                            <a>{{item.countCases}}</a>
+                                                        </td>
+
+
+                                                        <td class="td-name " style="text-align:center">
+                                                            <a>{{item.createdBy}}</a>
+                                                        </td>
+                                                        <td style="text-align:center">
+                                                            {{item.createdOn | moment}}
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <hr />
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-primary">
+                                                <i class="now-ui-icons objects_support-17"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.diseases}}</h3>
+                                            <h6 class="stats-title">عدد الامراض</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-success">
+                                                <i class="now-ui-icons business_bank"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.hospitals}}</h3>
+                                            <h6 class="stats-title">عدد المستشفيات </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="statistics">
+                                        <div class="info">
+                                            <div class="icon icon-info">
+                                                <i class="now-ui-icons users_single-02"></i>
+                                            </div>
+                                            <h3 class="info-title">{{Info.users}}</h3>
+                                            <h6 class="stats-title">عدد المستخدمين</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

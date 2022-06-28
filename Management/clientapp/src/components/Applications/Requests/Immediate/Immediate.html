@@ -1,0 +1,276 @@
+﻿<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" style="direction: rtl;">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3 class="card-title" style="float: right;">ادارة الرصد والاستجابة الفورية  </h3>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--{{ruleForm}}-->
+                <div class="card-body" style="text-align:right">
+
+                    <el-form label-position="top"
+                             :model="ruleForm"
+                             :rules="rules"
+                             ref="ruleForm"
+                             label-width="120px"
+                             class="demo-ruleForm">
+                        <br />
+
+                        <div class="row">
+                            <!--<div class="col-md-3">
+        <el-form-item label=" موجه الي " prop="HospitalId">
+            <el-select v-model="ruleForm.HospitalId"
+                       style="width:100%"
+                       filterable placeholder="موجه الي  ">
+                <el-option v-for="item in Hospitals"
+                           :key="item.id"
+                           :label="item.name"
+                           :value="item.id">
+                </el-option>
+            </el-select>
+        </el-form-item>
+    </div>-->
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label=" الوحدة الصحية" prop="Unit">
+                                        <el-input placeholder="الوحدة الصحية"
+                                                  v-model="ruleForm.Unit"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="عنوانها" prop="HospitalLocations">
+                                        <el-input placeholder="عنوانها"
+                                                  v-model="ruleForm.HospitalLocations"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الجهة التابع لها" prop="UserFrom">
+                                        <el-input placeholder="الجهة التابع لها"
+                                                  v-model="ruleForm.UserFrom"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="التاريخ" prop="DeateOn">
+                                        <el-date-picker v-model="ruleForm.DeateOn"
+                                                        type="date"
+                                                        style="width:100%"
+                                                        placeholder="التاريخ  ">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <h4> بيانات المريض</h4>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اسم المريض" prop="Name">
+                                        <el-input placeholder="اسم المريض"
+                                                  v-model="ruleForm.Name"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="العمر" prop="Age">
+                                        <el-input placeholder="العمر"
+                                                  v-model="ruleForm.Age"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <el-form-item label=" الجنس " prop="Gender">
+                                    <el-select v-model="ruleForm.Gender"
+                                               style="width:100%"
+                                               filterable placeholder="الجنس  ">
+                                        <el-option v-for="item in [{id:1,Gender:'ذكـر'},{id:2,Gender:'انـثي'}]"
+                                                   :key="item.id"
+                                                   :label="item.Gender"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+                        </div>
+
+                        <h4> بيانات الاقامة</h4>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الجنسية" prop="Nationality">
+                                        <el-input placeholder="الجنسية"
+                                                  v-model="ruleForm.Nationality"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="المدينة" prop="City">
+                                        <el-input placeholder="المدينة "
+                                                  v-model="ruleForm.City"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="المحلة" prop="Mahla">
+                                        <el-input placeholder="المحلة"
+                                                  v-model="ruleForm.Mahla"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اقرب نقطة دالة" prop="Locations">
+                                        <el-input placeholder=" اقرب نقطة دالة"
+                                                  v-model="ruleForm.Locations"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <h4> بيانات الوظيفة</h4>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group align-right">
+                                    <el-form-item label="المهنة الحالية ومكان العمل" prop="JobInfo">
+                                        <el-input placeholder="المهنة الحالية ومكان العمل"
+                                                  v-model="ruleForm.JobInfo"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <h4> بيانات المرض</h4>
+
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="المرض المشتبه به ورقم تصنيفه الدولي " prop="DiseaseInfo">
+                                        <el-input placeholder="المرض المشتبه به ورقم تصنيفه الدولي  "
+                                                  v-model="ruleForm.DiseaseInfo"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="تاريخ ظهور المرض " prop="DiseaseDateOn">
+                                        <el-date-picker v-model="ruleForm.DiseaseDateOn"
+                                                        type="date"
+                                                        style="width:100%"
+                                                        placeholder="تاريخ ظهور المرض  ">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="تاريخ اكتشاف الحالة " prop="FindOn">
+                                        <el-date-picker v-model="ruleForm.FindOn"
+                                                        type="date"
+                                                        style="width:100%"
+                                                        placeholder="تاريخ اكتشاف الحالة  ">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الاجراءات التي تم اتخادها " prop="ActionsInfo">
+                                        <el-input placeholder="الاجراءات التي تم اتخادها  "
+                                                  v-model="ruleForm.ActionsInfo"
+                                                  clearable>
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="direction: ltr;text-align: left;margin-top:40px">
+                                <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">إضافة البيانات</button>
+                                <button class="btn btn-default" style="margin-left:7px" @click.prevent="back()">رجوع</button>
+                            </div>
+                        </div>
+                        <br />
+
+                    </el-form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

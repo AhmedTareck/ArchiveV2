@@ -1,0 +1,629 @@
+﻿
+<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12 zoomIn">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card" style="direction: rtl;" v-if="state==0">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4 class="card-title" style="float: right;">ادارة التقارير </h4>
+
+
+                                        </div>
+                                        <!--<div class="col-md-2" style="text-align: left;">
+                                            <button class="btn btn-primary" @click.prevent="addUser()">
+                                                <i class="fa fa-plus"></i>
+                                                اضـافة مـستخدم
+                                            </button>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <br />
+                                    <br />
+                                    <!--{{date1}}-->
+                                    <!--{{date2}}-->
+                                <div class="row" v-if="loginDetails.userType==1 || loginDetails.userType==3">
+
+                                    <div class="col-md-2">
+                                        <el-select v-model="MunicipalitieId"
+                                                   style="width:100%;"
+                                                   @change="GetHospitalsName()"
+                                                   filterable placeholder="موقع الرصد">
+                                            <el-option v-for="item in Municipalitie"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+
+                                    <div class="col-md-2">
+
+                                        <el-select v-model="HospitalId"
+                                                   style="width:100%;"
+                                                   @change="Search()"
+                                                   filterable placeholder="المستشفي">
+                                            <el-option v-for="item in Hospitals"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                   
+                                    <div class="col-md-2" dir="rtl" style="text-align:right;width:100%">
+                                        <div class="block">
+                                            <el-date-picker style="width:100%"
+                                                            v-model="date1"
+                                                            type="date"
+                                                            placeholder="من">
+                                            </el-date-picker>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" dir="rtl" style="text-align:right;width:100%">
+                                        <div class="block">
+                                            <el-date-picker style="width:100%"
+                                                            v-model="date2"
+                                                            type="date"
+                                                            placeholder="الي">
+                                            </el-date-picker>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group" style="margin-top:-10px;text-align:right">
+                                            <button class="btn btn-warning" @click.prevent="Search()">بحت</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1.5" style="margin-left: 20px;">
+                                        <div class="form-group" style="margin-top:-10px;">
+                                            <button class="btn btn-default" @click.prevent="ExportExel()">تصدير البيانات </button>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-1.5">
+                                        <div class="form-group" style="margin-top:-10px;">
+                                            <button class="btn btn-info" @click.prevent="Print2()">طباعة </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                    <!--{{Cities}}-->
+                                    <br />
+
+                                    <br />
+                                    <div class="toolbar">
+                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                    </div>
+                                    <el-alert v-if="Info==0"
+                                              title="لا توجد بيانات لعرضها في الوقت الحالي "
+                                              type="warning"
+                                              show-icon style="font-size:18px!important">
+                                    </el-alert>
+                                    <!--{{Info}}-->
+                                    <div v-if="Info!=0" style="overflow-y: auto">
+                                        <table id="datatable"
+                                               class="table table-striped table-bordered"
+                                               cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-size: 1.063rem;text-align: center">#</th>
+                                                    <!--<th style="font-size: 1.063rem;text-align: center" v-if="loginDetails.userType==1"> المستشفي</th>-->
+                                                    <th style="font-size: 1.063rem;text-align: center"> نوع المرض</th>
+                                                    <th style="font-size: 1.063rem;text-align: center"> عدد الحالات</th>
+                                                    <!--<th style="font-size: 1.063rem;text-align: center"> الجهة</th>-->
+                                                    <!--<th style="font-size: 1.063rem;text-align: center"> اسم الراصد</th>-->
+                                                    <th style="font-size: 1.063rem;text-align: center">تاريخ الادراج</th>
+                                                    <th class="text-left" style="font-size: 1.063rem;">الإعدادات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item,index in Info">
+                                                    <td>
+                                                        {{index+1}}
+                                                    </td>
+                                                    <!--<td class="td-name " style="text-align:center" v-if="loginDetails.userType==1">
+                                                        <a>{{item.hospital}}</a>
+                                                    </td>-->
+                                                    <td class="td-name " style="text-align:center">
+                                                        <a>{{item.diseaseName}}</a>
+                                                    </td>
+                                                    <td class="td-name " style="text-align:center">
+                                                        <a>{{item.countCases}}</a>
+                                                    </td>
+                                                    <!--<td class="td-name " style="text-align:center">
+                                                        <a>{{item.hospital}}</a>
+                                                    </td>
+                                                    <td class="td-name " style="text-align:center">
+                                                        <a>{{item.createdBy}}</a>
+                                                    </td>-->
+                                                    <td style="text-align:center">
+                                                        {{item.createdOn | moment}}
+                                                    </td>
+
+                                                    <td class="td-actions text_align-left">
+                                                        <!--<a><i class="fa fa-edit"></i></a>
+                        <a><i class="fa fa-remove"></i></a>
+                        <a><i class="fa fa-lock"></i></a>
+                        <a><i class="fa fa-unlock"></i></a>-->
+
+
+                                                        <!--<button v-if="loginDetails.userType==1"
+                                                                @click.prevent="AddRequest(item)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-default btn-link"
+                                                                title="اضافة طلب">
+                                                            <i class="material-icons">
+                                                                account_balance
+                                                            </i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>-->
+
+                                                        <button @click.prevent="ViewItem(item)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-info btn-link"
+                                                                title="عرض البيانات">
+                                                            <i class="material-icons">
+                                                                description
+                                                            </i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+
+
+                                                        <!--<button @click.prevent="EditItem(item)"
+                                type="button"
+                                rel="tooltip"
+                                class="btn btn-warning btn-link"
+                                title="تعديل البيانات">
+                                    <i class="material-icons">
+                                edit_note
+                            </i>
+                            <div class="ripple-container"></div>
+                        </button>-->
+
+                                                        <!--<button @click.prevent="deleteItem(item.id)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-danger btn-link"
+                                                                title="حذف">-->
+                                                            <!--<i class="fa fa-trash"></i>-->
+                                                            <!--<i class="material-icons">
+                                                                delete
+                                                            </i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>-->
+
+
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <!--<div style="text-align: center;padding-bottom:11px">
+                                            <el-pagination background
+                                                           layout="prev, pager, next"
+                                                           :current-page="pageNo"
+                                                           :page-size="pageSize"
+                                                           :total="pages"
+                                                           @current-change="GetInfo($event)">
+                                            </el-pagination>
+                                        </div>-->
+                                    </div>
+
+
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <el-dialog title=" البيانات الخاصة بالنمودج"
+               :visible.sync="ViewDilog"
+               width="70%"
+               center>
+        <div class="row">
+            <el-form label-position="top"
+                     :model="ruleForm"
+                     :rules="rules"
+                     ref="ruleForm"
+                     label-width="120px"
+                     class="demo-ruleForm"
+                     style="width: 100%;">
+                <br />
+                <!--<p style="direction:ltr">
+                    {{SelectedItem}}
+                </p>-->
+
+
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-4">
+                        اسم المستشفي :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.hospital}}
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        بيانات الراصد :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.createdBy}}
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        تاريخ الادراج:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.createdOn | moment}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-6">
+                        نوع المرض :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.diseaseName}}
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        عدد الحالات :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.countCases}}
+                        </span>
+                    </div>
+
+
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-2">
+                        الذكور :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.male}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        الاناث :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.fmale}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        ليبي الجنسية:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.libyan}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        غير ليبي الجنسية:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.libyan}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        الوفيات :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.deaths}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-2">
+                        اكبر من 5 سنوات :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.overFive}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        اصغر من 5 سنوات :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessFive}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        اصغر من 10 سنوات:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessTen}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        اصغر من 15 سنة:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessFifteen}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        اصغر من 20 سنة :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessTwenty}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-2">
+                        اصغر من 25 سنة :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessTwentyFive}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        اصغر من 30 سنة :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessThirty}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        اصغر من 35 سنة:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessFiveThirty}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        اصغر من 40 سنة:
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessForty}}
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        اصغر من 45 سنة :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.lessFortyFive}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+                    <div class="col-md-12">
+                        اكبر من 50 سنة :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.overFifty}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+
+
+
+                <!--
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-3">
+
+                        الشهادة المتحصل عليها :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.certificate}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        التخصص :
+                        <span style="font-weight:bold" v-if="SelectedItem.gender==1">
+                            {{SelectedItem.specialization}}
+                        </span>
+                    </div>
+
+                    <div class="col-md-3">
+                        السنة الدراسية :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.academicYear}}
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        سنة التخرج :
+                        <span style="font-weight:bold" v-if="SelectedItem.gender==1">
+                            {{SelectedItem.graduationYear}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+
+
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-6">
+
+                        العنوان :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.address}}
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+
+                        البريد الإلكتروني :
+                        <span style="font-weight:bold" v-if="SelectedItem.gender==1">
+                            {{SelectedItem.email}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-12">
+
+                        رابط فيديو لمدة دقيقة يقدم فيها نفسه :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.introducingVideo}}
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <h4 style="text-align:right">فكرة المشروع</h4>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-4">
+
+                        مرحلة المشروع :
+                        <span v-if="SelectedItem.projectStage==1">
+                            مازال في مرحلة الفكرة
+                        </span>
+                        <span v-if="SelectedItem.projectStage==2">
+                            المنتج عبارة عن منتج اولي
+                        </span>
+                        <span v-if="SelectedItem.projectStage==3">
+                            المنتج في مرحلة تطوير متقدمة
+                        </span>
+                        <span v-if="SelectedItem.projectStage==4">
+                            المنتج جاهز
+                        </span>
+                    </div>
+                    <div class="col-md-8">
+
+                        المجال المستهدف من البرنامج أو المشروع :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.projectTarget}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-12">
+
+                        وصف الموضوع وأهدافه :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.projectDescriptions}}
+                        </span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row" dir="rtl" style="text-align:right">
+
+                    <div class="col-md-12">
+
+                        رابط فيديو لعرض تقدم المشروع :
+                        <span style="font-weight:bold">
+                            {{SelectedItem.projectVideo}}
+                        </span>
+                    </div>
+                </div>
+                <hr />-->
+
+
+
+
+
+                <br />
+
+            </el-form>
+        </div>
+
+    </el-dialog>
+
+
+
+
+    <el-dialog title=" طلب تعبئة نمودج"
+               :visible.sync="ViewRequestDilog"
+               width="70%"
+               center>
+        <div class="row">
+            <el-form label-position="top"
+                     :model="ruleForm"
+                     :rules="rules"
+                     ref="ruleForm"
+                     label-width="120px"
+                     class="demo-ruleForm"
+                     style="width: 100%;">
+                <br />
+                <p style="direction:ltr">
+                    <!--{{SelectedItem}}-->
+                </p>
+                <!--{{ruleForm}}-->
+                <div class="row" dir="rtl">
+
+
+                    <div class="col-md-6">
+                        <div class="form-group align-right">
+                            <el-form-item label="عدد الحالات " prop="CountNow">
+                                <el-input placeholder=" عدد الحالات  "
+                                          disabled
+                                          v-model="ruleForm.CountNow"
+                                          clearable>
+                                </el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group align-right">
+                            <el-form-item label="عدد النمادج المطلوب تعبئتها " prop="Count">
+                                <el-input placeholder=" عدد النمادج المطلوب تعبئتها  "
+                                          v-model="ruleForm.Count"
+                                          clearable
+                                          type="number">
+                                </el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" dir="rtl">
+
+
+                    <div class="col-md-12">
+                        <div class="form-group align-right">
+                            <el-form-item label="وصف توضيحي" prop="Desriptions">
+                                <el-input placeholder=" وصف توضيحي"
+                                          v-model="ruleForm.Desriptions"
+                                          clearable>
+                                </el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row" dir="rtl" style="text-align:center">
+
+
+
+                    <div class="col-md-12">
+                        <div class="form-group align-right">
+                            <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">إضافة طلب</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </el-form>
+        </div>
+
+    </el-dialog>
+
+</div>
+

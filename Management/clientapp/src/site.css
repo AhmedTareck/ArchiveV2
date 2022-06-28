@@ -1,0 +1,157 @@
+﻿
+@import "../public/element-ui/lib/theme-chalk/index.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css";
+
+
+
+
+
+
+
+@media screen and (max-width: 700px) {
+    .el-dialog {
+        width: 90% !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        width: 141%;
+        margin-left: -20%;
+    }
+}
+
+
+
+.navbar a:not(.btn):not(.dropdown-item) {
+    /*color: black;*/
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #409EFF !important;
+    border-color: #409EFF !important;
+}
+
+
+.el-select-dropdown__list {
+    list-style: none;
+    text-align: right;
+    padding: 6px 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cardRTL {
+    text-align: right;
+    direction: rtl;
+    height: auto;
+}
+
+.el-message-box__status.el-icon-warning {
+    margin-left: -29px;
+    color: #E6A23C;
+}
+
+.panel-header {
+    height: 350px;
+    padding-top: 80px;
+    padding-bottom: 45px;
+    background: #141E30;
+    background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(49 207 90) 60%, rgb(57 149 54) 100%);
+}
+
+.el-message-box {
+    text-align: right;
+}
+
+.el-message-box__status + .el-message-box__message {
+    padding-left: 46px;
+    padding-right: 42px;
+}
+
+.swal2-title{
+    font-size:28px!important;
+}
+
+.el-alert__title {
+    font-size: 18px;
+}
+
+#navigation {
+    background-color: white;
+}
+
+.icon-space {
+    margin: 3px !important;
+}
+
+.AddButtonLeftSide {
+    text-align: left;
+}
+
+a i {
+    font-size: 20px!important;
+}
+
+label {
+    color: black !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+
+@font-face {
+    font-family: 'DroidArabicKufiRegular';
+    src: url('../public/fonts/DroidKufi-Regular.eot') format('embedded-opentype'), url('../public/fonts/DroidKufi-Regular.woff') format('woff'), url('../public/fonts/DroidKufi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+input {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+textarea {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+* {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+button {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+body {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+a {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+li {
+    font-family: 'DroidArabicKufiRegular';
+}
+

@@ -1,0 +1,196 @@
+﻿
+<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <add-Users v-if="state==1"></add-Users>
+                            <edit-Users v-if="state==2"></edit-Users>
+                            <div class="card" style="direction: rtl;" v-if="state==0">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="card-title" style="float: right;">بيانــات المـستخدمين</h4>
+                                        </div>
+                                        <!--<div class="col-md-2" style="text-align: left;">
+                                            <button class="btn btn-info" @click.prevent="addUser()" v-if="(UserType==1 || (UserType==2 && OfficeIdValue!=''))">
+                                                <i class="fa fa-plus"></i>
+                                                اضـافة مـستخدم
+                                            </button>
+                                        </div>-->
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="row">
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group bmd-form-group">
+                                                <el-select style="width: 100%;" v-model="UserType" filterable placeholder="الصفة الوظيفية" @change="UserTypeSearch()">
+                                                    <el-option v-for="item in [{id:1,name:'مدير نظام'},{id:2,name:'موظف لجهة'}]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group bmd-form-group">
+                                                <el-select @change="UserTypeSearchOffice()" v-if="UserType==2" v-model="SelectedOfficeId" filterable placeholder="اختر الجهة">
+                                                    <el-option v-for="item in Hospitals"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="toolbar">
+                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                    </div>
+                                    <el-alert title="لاتـوجد بيانات للمسـتخدمين"
+                                              type="warning"
+                                              show-icon v-if="users==0" style="font-size:18px!important">
+                                    </el-alert>
+                                    <div>
+                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%" v-if="users!=0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-size: 1.063rem;text-align:center">بطاقة التعريف</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">الإسم</th>
+                                                    <th style="font-size: 1.063rem;text-align: center">إسم الدخول</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">نوع المستخدم</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">الجهة</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">رقم الهاتف</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">البريد الإلكتروني</th>
+                                                    <th class="text-right" style="font-size: 1.063rem;text-align:center">الإعدادات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item,index in users">
+                                                    <td style="text-align: center">
+                                                        <div class="img-container">
+                                                            <a :href="'/Api/Admin/User/' + item.userId + '/image'"><img :src="'/Api/Admin/User/' + item.userId + '/image'" style="width:50px;" /></a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-name " style="text-align: center">
+                                                        <a>{{item.fullName}}</a>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.loginName}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <span v-if="item.userType==1">مـدير النظام</span>
+                                                        <span v-if="item.userType==2">مـوظف لجهة</span>
+
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <span v-if="item.Hospital==null">لايوجد</span>
+                                                        <span v-if="item.Hospital!=null">{{item.Hospital}}</span>
+
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.phone}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.email}}
+                                                    </td>
+                                                    <td class="td-actions text-right" style="text-align: center">
+
+                                                        <button 
+                                                                @click.prevent="EditUser(item)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-warning btn-link"
+                                                                title="ايقاف الحساب">
+                                                            <i class="material-icons">
+                                                                edit_note
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+                                                        
+                                                        <button v-if="item.status == 1"
+                                                                @click.prevent="DeactivateUser(item.userId)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-info btn-link"
+                                                                title="ايقاف الحساب">
+                                                            <i class="material-icons">
+                                                                lock
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+                                                        
+                                                        <button v-if="item.status == 2 || item.status==0"
+                                                                @click.prevent="ActivateUser(item.userId)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-success btn-link"
+                                                                title="تفعيل الحساب">
+                                                            <i class="material-icons">
+                                                                lock_open
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+                                                        
+                                                        <button @click.prevent="delteUser(item.userId)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-danger btn-link"
+                                                                title="حذف">
+                                                            <i class="material-icons">
+                                                                delete
+                                                            </i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+
+                                                        <!--<a @click.prevent="EditUser(item)"><i class="fa fa-edit"></i></a>-->
+                                                        <!--<a @click.prevent="delteUser(item.userId)"><i class="fa fa-remove"></i></a>
+                                                        <a v-if="item.status == 1" @click.prevent="DeactivateUser(item.userId)"><i class="fa fa-lock"></i></a>
+                                                        <a v-if="item.status == 2 || item.status==0" 
+                                                           @click.prevent="ActivateUser(item.userId)"><i class="fa fa-unlock"></i></a>-->
+                                                    </td>
+
+                                                    
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div style="text-align: center;padding-bottom:11px" v-if="users!=0">
+                                        <el-pagination background
+                                                       layout="prev, pager, next"
+                                                       :current-page="pageNo"
+                                                       :page-size="pageSize"
+                                                       :total="pages"
+                                                       @current-change="getUser($event)">
+                                        </el-pagination>
+                                    </div>
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

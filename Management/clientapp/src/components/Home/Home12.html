@@ -1,0 +1,383 @@
+﻿<div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="panel-header panel-header-lg" style="        height: auto !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+
+
+            <!--{{Info}}-->
+
+
+
+
+            <div class="row" style="text-align:center;">
+                <div class="col-md-12" style="margin-top: -130px;
+    text-align: center;">
+                    <div class="center-block"
+                         style="padding-bottom: 31px; padding-top: 159px; ">
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.requestDone"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption">طلبات تم التعامل معها </p>
+                        </vue-ellipse-progress>
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.request"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption">عدد الطلبات</p>
+                        </vue-ellipse-progress>
+
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.imaddiat"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption"> عدد النماذج الفورية  </p>
+                        </vue-ellipse-progress>
+
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.dailyforms"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption">عدد النماذج</p>
+                        </vue-ellipse-progress>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <br />
+
+
+            <div class="row" style="text-align:center;">
+                <div class="col-md-12" style="margin-top: -130px;
+    text-align: center;">
+                    <div class="center-block"
+                         style="padding-bottom: 31px; padding-top: 159px; ">
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.users"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption">عدد المستخدمين</p>
+                        </vue-ellipse-progress>
+
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.hospitals"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption"> عدد المستشفيات  </p>
+                        </vue-ellipse-progress>
+
+                        <vue-ellipse-progress style="margin-right: 40px"
+                                              :progress="Info.diseases"
+                                              :angle="-90"
+                                              color="#7579ff"
+                                              empty-color="#324c7e"
+                                              :size="200"
+                                              :thickness="5"
+                                              :empty-thickness="3"
+                                              lineMode="in 10"
+                                              :legend="true"
+                                              :legendValue="Percentage"
+                                              legendClass="legend-custom-style"
+                                              dash="5"
+                                              animation="loop 700 1000"
+                                              :loading="loading"
+                                              :no-data="false"
+                                              fontColor="#7579ff"
+                                              :half="false"
+                                              :gap="10"
+                                              fontSize="3rem">
+                            <span slot="legend-value"></span>
+                            <p slot="legend-caption">عدد الامراض</p>
+                        </vue-ellipse-progress>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="content" style="direction: rtl;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <div class="card-body">
+
+                            <div v-if="Info!=0" style="overflow-y: auto">
+                                <table id="datatable"
+                                       class="table table-striped table-bordered"
+                                       style="    display: block;
+                                   overflow-x: auto;
+                                   white-space: nowrap;"
+                                       cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-size: 1.063rem;text-align: center">#</th>
+                                            <th style="font-size: 1.063rem;text-align: center" v-if="loginDetails.userType==1"> المستشفي</th>
+                                            <th style="font-size: 1.063rem;text-align: center">  المرض</th>
+                                            <th style="font-size: 1.063rem;text-align: center" v-if="loginDetails.userType==1"> الجهة</th>
+                                            <th style="font-size: 1.063rem;text-align: center">عدد الحالات</th>
+                                            <th style="font-size: 1.063rem;text-align: center">ليبين</th>
+                                            <th style="font-size: 1.063rem;text-align: center">غير ليبين</th>
+                                            <th style="font-size: 1.063rem;text-align: center">المطعمين</th>
+                                            <th style="font-size: 1.063rem;text-align: center">غير المطعمين</th>
+                                            <th style="font-size: 1.063rem;text-align: center">ذكور</th>
+                                            <th style="font-size: 1.063rem;text-align: center">إناث</th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 5 سنوات </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اكبر من 5 سنوات </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 10 سنوات </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 15 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 20 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 25 سنة </th>
+
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 30 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 35 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 40 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 45 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اصغر من 50 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center"> اكبر من 50 سنة </th>
+                                            <th style="font-size: 1.063rem;text-align: center">اسم الراصد</th>
+                                            <th style="font-size: 1.063rem;text-align: center">تاريخ التبليغ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info2">
+                                            <td>
+                                                {{index+1}}
+                                            </td>
+                                            <td class="td-name " style="text-align:center" v-if="loginDetails.userType==1">
+                                                <a>{{item.hospital}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.diseaseName}}</a>
+                                            </td>
+
+                                            <td class="td-name " style="text-align:center" v-if="loginDetails.userType==1">
+                                                <a>{{item.hospital}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.countCases}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.libyan}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.nlibyan}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.vaccinationStatus}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.notVaccinationStatus}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.male}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.fmale}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessFive}}</a>
+                                            </td>
+
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.overFive}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessTen}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessFifteen}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessTwenty}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessTwentyFive}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessThirty}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessFiveThirty}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessForty}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.lessFortyFive}}</a>
+                                            </td>
+
+                                            <td class="td-name " style="text-align:center">
+                                                <a>-</a>
+                                            </td>
+
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.overFifty}}</a>
+                                            </td>
+                                            <td class="td-name " style="text-align:center">
+                                                <a>{{item.createdBy}}</a>
+                                            </td>
+                                            <td style="text-align:center">
+                                                {{item.createdOn | moment}}
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <!-- <div style="text-align: center;padding-bottom:11px">
+                                    <el-pagination background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </div> -->
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

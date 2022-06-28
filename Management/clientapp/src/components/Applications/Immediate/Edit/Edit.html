@@ -1,0 +1,306 @@
+﻿
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" style="direction: rtl;">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3 class="card-title" style="float: right;">تعديل البيانات  </h3>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body" style="text-align:right">
+
+                    <div class="row">
+                        <div class="col-md-12" style="direction: ltr;text-align: left">
+                            <button class="btn btn-dark" @click.prevent="back()">رجوع</button>
+                        </div>
+                    </div>
+                    <br />
+
+                    <el-form label-position="top"
+                             :model="ruleForm"
+                             :rules="rules"
+                             ref="ruleForm"
+                             label-width="120px"
+                             class="demo-ruleForm">
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <el-form-item label=" الجهة" prop="HospitalId">
+                                    <el-select v-model="ruleForm.HospitalId"
+                                               style="width:100%"
+                                               filterable placeholder="الجهة ">
+                                        <el-option v-for="item in Hospitals"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group align-right">
+                                    <el-form-item label="رقم القيد بالمنظومة" prop="OldId">
+                                        <el-input type="text" placeholder="رقم القيد بالمنظومة" v-model="ruleForm.OldId"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الاسم الاول" prop="FirstName">
+                                        <el-input type="text" placeholder="الاسم" v-model="ruleForm.FirstName"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اسم الاب " prop="FatherName">
+                                        <el-input type="text" placeholder="اسم الاب" v-model="ruleForm.FatherName"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اسم الجد " prop="GrandFatherName">
+                                        <el-input type="text" placeholder="اسم الجد" v-model="ruleForm.GrandFatherName"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اللقب " prop="FamilyName">
+                                        <el-input type="text" placeholder="اللقب" v-model="ruleForm.FamilyName"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="تاريخ الميلاد" prop="BirthDate">
+                                        <el-date-picker style="width:100%" v-model="ruleForm.BirthDate"
+                                                        type="date"
+                                                        placeholder="تاريخ الميلاد">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الجنسية" prop="Nationality">
+                                        <el-input type="text" placeholder="الجنسية" v-model="ruleForm.Nationality"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="مكان العمل " prop="Workplace">
+                                        <el-input type="text" placeholder="مكان العمل" v-model="ruleForm.Workplace"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الوضع العائلي " prop="FamilyName">
+                                        <!--<el-input type="text" placeholder="الوضع العائلي" v-model="ruleForm.SocialStatus"></el-input>-->
+
+                                        <el-select style="width: 100%;" v-model="ruleForm.SocialStatus" filterable
+                                                   placeholder="الوضع العائلي ">
+                                            <el-option v-for="item in [{id:1,name:'عازب'},{id:2,name:'متزوج'},{id:3,name:'ارمل'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group align-right">
+                                    <el-form-item label="الرقم الوطني" prop="Nid">
+                                        <el-input type="text" placeholder="الرقم الوطني" v-model="ruleForm.Nid"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group align-right">
+                                    <el-form-item label="مكان السكن " prop="Workplace">
+                                        <el-input type="text" placeholder="مكان السكن" v-model="ruleForm.Address"></el-input>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="تاريخ بداية الفشل الكلوى" prop="StartDate">
+                                        <el-date-picker style="width:100%" v-model="ruleForm.StartDate"
+                                                        type="date"
+                                                        placeholder="تاريخ بداية الفشل الكلوى">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="فصيلة الدم" prop="BloodType">
+                                        <!--<el-input type="text" placeholder="فصيلة الدم " v-model="ruleForm.BloodType"></el-input>-->
+                                        <el-select style="width: 100%;" v-model="ruleForm.BloodType" filterable
+                                                   placeholder="فصيلة الدم  ">
+                                            <el-option v-for="item in [{id:1,name:'O+'},{id:2,name:'O-'},{id:3,name:'A+'},{id:4,name:'A-'},{id:5,name:'B+'},{id:6,name:'B-'},{id:7,name:'AB+'},{id:8,name:'AB-'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="نتائج التحاليل الفيروسية " prop="ViralTestResults">
+                                        <el-select style="width: 100%;" v-model="ruleForm.ViralTestResults" filterable
+                                                   placeholder="نتائج التحاليل ">
+                                            <el-option v-for="item in [{id:1,name:'Negative'},{id:2,name:'C-Postive'},{id:3,name:'B-Postive'},{id:4,name:'HIV'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="اسم الشركة">
+                                        <el-select style="width: 100%;" v-model="company" filterable
+                                                   placeholder="اسم الشركة " @change="GetDevicesbyCompany()">
+                                            <el-option v-for="item in [{id:1,name:'B.BARUN'},{id:2,name:'FRESENIUS'},{id:3,name:'BAXTER'},{id:4,name:'NIPRO'},{id:5,name:'Dia life'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group align-right">
+                                    <el-form-item label="نوع جهاز الغسيل " prop="DeviceId">
+                                        <el-select style="width: 100%;" v-model="ruleForm.DeviceId" filterable
+                                                   placeholder="نوع جهاز الغسيل " @change="GetFilter()">
+                                            <el-option v-for="item in Devices"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4" v-if="ruleForm.DeviceId!=9">
+                                <div class="form-group align-right">
+                                    <el-form-item label="نوعية فلتر الغسيل المناسب " prop="FilterTypeId">
+                                        <el-select style="width: 100%;" v-model="ruleForm.FilterTypeId" filterable
+                                                   placeholder="نوعية فلتر الغسيل المناسب ">
+                                            <el-option v-for="item in FilterTypes"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+                        <!--{{ruleForm}}-->
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group align-right">
+                                <el-form-item label="عدد فترات الغسيل اسبوعيا " prop="WashingCount">
+                                    <el-select style="width: 100%;" v-model="ruleForm.WashingCount" filterable
+                                               placeholder="عدد فترات الغسيل اسبوعيا ">
+                                        <el-option v-for="item in [{id:1,name:'جلسة'},{id:2,name:'جلستان'},{id:3,name:'ثلاث جلسات'}]"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group align-right">
+                                <el-form-item label="سبب الفشل الكلوى" prop="Resone">
+                                    <el-select style="width: 100%;" v-model="ruleForm.Resone" filterable
+                                               placeholder="سبب الفشل الكلوى ">
+                                        <el-option v-for="item in [{id:1,name:'وراثي'},{id:2,name:'ضفظ دم'},{id:3,name:' سكرى'},{id:4,name:' مسالك'},{id:5,name:' أخري'}]"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="direction: ltr;text-align: left">
+                            <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">
+                                تعديل البيانات
+                            </button>
+
+
+                        </div>
+                    </div>
+                        <br />
+
+                    </el-form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿
+<div class="Profiles" >
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12 zoomIn">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                           
+                            <div class="card" style="direction: rtl;" >
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h3 class="card-title" style="float: right;">إضافة بيانات مرض جديد  </h3>
+
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body" style="text-align:right">
+                                    <br />
+                                    <br />
+
+
+                                    <el-form label-position="top" 
+                                             :model="ruleForm" 
+                                             :rules="rules" 
+                                             ref="ruleForm" 
+                                             label-width="120px" 
+                                             class="demo-ruleForm">
+                                        <br />
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="إسم المرض" prop="Name">
+                                                        <el-input type="text" placeholder="إسم المرض" v-model="ruleForm.Name"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="إسم المرض (إنجليزي)" prop="EngilshName">
+                                                        <el-input type="text" placeholder="إسم المرض (إنجليزي)" v-model="ruleForm.EngilshName"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="تعريف الحالة المرض">
+                                                        <el-input type="text" v-model="ruleForm.Descriptions" placeholder="تعريف الحالة للمرض"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="القسم" prop="Type">
+                                                        <el-select style="width: 100%;" v-model="ruleForm.Type" filterable placeholder=" القسم">
+                                                            <el-option v-for="item in [{id:1,name:'القسم الأول '},{id:2,name:' القسم التاني'}]"
+                                                                       :key="item.id"
+                                                                       :label="item.name"
+                                                                       :value="item.id">
+                                                            </el-option>
+                                                        </el-select>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3" style="direction: ltr;text-align: left;margin-top:40px">
+                                                <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">إضافة البيانات</button>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <!--<div class="row">
+                                            <div class="col-md-12" style="direction: ltr;text-align: left;">
+                                                <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">إضافة البيانات</button>
+                                            </div>
+                                        </div>-->
+                                        <br />
+
+                                    </el-form>
+
+
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

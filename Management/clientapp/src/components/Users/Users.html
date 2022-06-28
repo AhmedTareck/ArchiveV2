@@ -1,0 +1,347 @@
+﻿
+<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <Add v-if="state==1"></Add>
+                            <div class="card" style="direction: rtl;" v-if="state==0">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="card-title" style="float: right;">بيانــات المستخذمين</h4>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="row">
+
+                                        <!--<div class="col-md-4">
+        <div class="form-group bmd-form-group">
+            <button class="btn btn-info" @click.prevent="Print()">
+                <i class="fa fa-print"></i>
+                طباعة بيانات الراصدين
+            </button>
+        </div>
+    </div>-->
+                                        <!--<div class="col-md-2">
+        <div class="form-group bmd-form-group">
+            <button class="btn btn-primary" @click.prevent="Print2()">
+                <i class="fa fa-print"></i>
+                طباعة المستخدمين
+            </button>
+        </div>
+    </div>-->
+                                        <!--  <div class="col-md-4">
+          <div class="form-group bmd-form-group">
+              <el-select @change="UserTypeSearchOffice()" v-if="UserType==2" v-model="SelectedOfficeId" filterable placeholder="اختر الجهة">
+                  <el-option v-for="item in Hospitals"
+                             :key="item.id"
+                             :label="item.name"
+                             :value="item.id">
+                  </el-option>
+              </el-select>
+          </div>
+      </div>-->
+
+                                        <div class="col-md-3">
+                                            <div class="form-group bmd-form-group" style="margin-top:15px">
+                                                <el-select @change="GetInfo()"
+                                                           v-model="UserType"
+                                                           filterable placeholder="الصفة الوظيفية ">
+                                                    <el-option v-for="item in [{id:1,name:'مدير النظام'},{id:2,name:'راصد بيانات'},{id:3,name:'محلل بيانات'}]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8" style="text-align: left;">
+                                            <button class="btn btn-warning" @click.prevent="Print()" style="margin-left:10px">
+                                                <i class="fa fa-print"></i>
+                                                طباعة البيانات
+                                            </button>
+                                            <button class="btn btn-info" @click.prevent="Add()">
+                                                <i class="fa fa-plus"></i>
+                                                اضـافة مـستخدم
+                                            </button>
+
+
+                                        </div>
+
+                                        <div class="col-md-1" style="margin-top:-6px">
+                                            <div class="form-group bmd-form-group" style="margin-top:15px">
+                                                <el-select @change="GetInfo()"
+                                                           v-model="pageSize"
+                                                           filterable placeholder="">
+                                                    <el-option v-for="item in [{id:5,name:'5 '},{id:10,name:'10'},{id:20,name:'20'},{id:40,name:'40'},{id:100,name:'100'}]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="card-body">
+                                    <div class="toolbar">
+                                    </div>
+                                    <el-alert v-if="Info==0"
+                                              title="لاتـوجد بيانات في الوقت الحالي !!!"
+                                              type="warning"
+                                              show-icon style="font-size:18px!important">
+                                    </el-alert>
+                                    <!--{{Info}}-->
+                                    <div v-if="Info!=0" style="overflow-y: auto">
+                                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-size: 1.063rem;text-align:center">بطاقة التعريف</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">الإسم</th>
+                                                    <th style="font-size: 1.063rem;text-align: center">إسم الدخول</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">نوع المستخذم</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">المستشفي</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">رقم الهاتف</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">البريد الإلكتروني</th>
+                                                    <th style="font-size: 1.063rem;text-align:center">حالة الحساب</th>
+                                                    <th class="text-right" style="font-size: 1.063rem;text-align:center">الإعدادات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item,index in Info">
+                                                    <td style="text-align: center">
+                                                        <div class="img-container">
+                                                            <a :href="'/Api/User/' + item.id + '/Image'">
+                                                                <img :src="'/Api/User/' + item.id + '/Image'"
+                                                                     style="width:50px;" />
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-name " style="text-align: center">
+                                                        <a>{{item.name}}</a>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.loginName}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <span v-if="item.userType==1">مـدير النظام</span>
+                                                        <span v-if="item.userType==2">راصد بيانات</span>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.branchName}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.phone}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        {{item.email}}
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <span class="badge badge-pill badge-success" v-if="item.status==1">نشط</span>
+                                                        <span class="badge badge-pill badge-danger" v-if="item.status==2">غير نشط</span>
+                                                    </td>
+                                                    <td class="td-actions text-right" style="text-align: center">
+
+                                                        <button @click.prevent="EditItem(item)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-warning btn-link"
+                                                                title="تعديل البيانات">
+                                                            <i class="material-icons">
+                                                                edit_note
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+                                                        <button v-if="item.status == 1"
+                                                                @click.prevent="DeactivateUser(item.id)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-info btn-link"
+                                                                title="ايقاف الحساب">
+                                                            <i class="material-icons">
+                                                                lock
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+                                                        <button v-if="item.status == 2 || item.status==0"
+                                                                @click.prevent="ActivateUser(item.id)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-success btn-link"
+                                                                title="تفعيل الحساب">
+                                                            <i class="material-icons">
+                                                                lock_open
+                                                            </i>
+
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+                                                        <button @click.prevent="DelteUser(item.id)"
+                                                                type="button"
+                                                                rel="tooltip"
+                                                                class="btn btn-danger btn-link"
+                                                                title="حذف">
+                                                            <i class="material-icons">
+                                                                delete
+                                                            </i>
+                                                            <div class="ripple-container"></div>
+                                                        </button>
+
+
+                                                        <!--<a @click.prevent="EditUser(item)"><i class="fa fa-edit"></i></a>-->
+                                                        <!--<a @click.prevent="delteUser(item.userId)"><i class="fa fa-remove"></i></a>
+        <a v-if="item.status == 1" @click.prevent="DeactivateUser(item.userId)"><i class="fa fa-lock"></i></a>
+        <a v-if="item.status == 2 || item.status==0"
+           @click.prevent="ActivateUser(item.userId)"><i class="fa fa-unlock"></i></a>-->
+                                                    </td>
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div style="text-align: center;padding-bottom:11px">
+                                            <el-pagination background
+                                                           layout="prev, pager, next"
+                                                           :current-page="pageNo"
+                                                           :page-size="pageSize"
+                                                           :total="pages"
+                                                           @current-change="GetInfo($event)">
+                                            </el-pagination>
+                                        </div>
+                                    </div>
+
+
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <el-dialog title="تعديل البيانات"
+               :visible.sync="EditDialog"
+               width="50%"
+               center>
+        <div class="row">
+            <el-form label-position="top"
+                     :model="ruleForm"
+                     :rules="rules"
+                     dir="rtl"
+                     ref="ruleForm"
+                     style="text-align:right"
+                     label-width="120px"
+                     class="demo-ruleForm">
+                <br />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group align-right">
+                            <el-form-item label="الاسم" prop="Name">
+                                <el-input type="text" placeholder="الاسم" v-model="ruleForm.Name"></el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group align-right">
+                            <el-form-item label="اسم الدخول" prop="LoginName">
+                                <el-input type="text" placeholder="اسم الدخول" v-model="ruleForm.LoginName"></el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group align-right">
+                            <el-form-item label="رقم الهاتف  " prop="Phone">
+                                <el-input type="text" placeholder=" رقم الهاتف " v-model="ruleForm.Phone"></el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group align-right">
+                            <el-form-item label="الصفة الوظيفية" prop="UserType">
+                                <el-select style="width: 100%;" v-model="ruleForm.UserType" filterable placeholder="الصفة الوظيفية">
+                                    <el-option v-for="item in [{id:1,name:'مدير النظام'},{id:2,name:'راصد بيانات'},{id:3,name:'محلل بيانات'}]"
+                                               :key="item.id"
+                                               :label="item.name"
+                                               :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="ruleForm.UserType==2">
+                        <div class="form-group align-right">
+                            <el-form-item label=" موقع الرصد">
+                                <el-select v-model="MunicipalitieId"
+                                           style="width:100%;"
+                                           @change="GetHospitalsName()"
+                                           filterable placeholder="موقع الرصد">
+                                    <el-option v-for="item in Municipalitie"
+                                               :key="item.id"
+                                               :label="item.name"
+                                               :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="ruleForm.UserType==2">
+                        <div class="form-group align-right">
+                            <el-form-item label=" المستشفي" prop="BranchId">
+                                <el-select style="width: 100%;" v-model="ruleForm.BranchId" filterable placeholder="المستشفي">
+                                    <el-option v-for="item in Branches"
+                                               :key="item.id"
+                                               :label="item.name"
+                                               :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </div>
+                    </div>
+                   
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12" style="direction: ltr;text-align: left;margin-top:35px">
+                        <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">تعديل البيانات</button>
+                    </div>
+                </div>
+
+
+            </el-form>
+        </div>
+
+    </el-dialog>
+
+
+
+</div>

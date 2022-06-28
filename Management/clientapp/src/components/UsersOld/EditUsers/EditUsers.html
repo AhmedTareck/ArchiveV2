@@ -1,0 +1,112 @@
+﻿<div class="content" style="direction:rtl;  text-align: right;" >
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-12"> <h4 class="card-title"> تعديل بيانات المستخدم </h4></div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <br />
+
+                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="top" label-width="120px" class="demo-ruleForm">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group bmd-form-group">
+                                    <label for="examplePassword" class="bmd-label-floating"> الاسم التلاثي <small style="color:red">* </small></label>
+                                    <input type="text" class="form-control" aria-required="true" v-model="form.FullName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group bmd-form-group">
+                                    <label for="examplePassword" class="bmd-label-floating"> اسم الدخول <small style="color:red">* </small></label>
+                                    <input type="text" class="form-control" aria-required="true" v-model="form.LoginName">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-md-4" style="margin-top:31px">
+                                <div class="form-group bmd-form-group">
+                                    <label for="examplePassword" class="bmd-label-floating">رقم  الهاتف <small style="color:red">* </small></label>
+                                    <input type="email" class="form-control" aria-required="true" v-model="form.Phone">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <div class="form-group" style="margin-top:31px">
+                                    <label>الجنس <small style="color:red">* </small></label>
+                                    <el-select style="width: 100%;" v-model="form.Gender" filterable placeholder="الجنس">
+                                        <el-option v-for="item in gender"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="margin-top:31px">
+                                    <label>تاريخ الميلاد <small style="color:red">* </small></label>
+                                    <div class="block">
+                                        <el-date-picker style="width:100%" v-model="form.DateOfBirth"
+                                                        type="date"
+                                                        placeholder="تاريخ الميلاد">
+                                        </el-date-picker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4" style="margin-top:31px">
+                                <div class="form-group bmd-form-group">
+                                    <label for="examplePassword" class="bmd-label-floating">البريد الإلكتروني <small style="color:red">* </small></label>
+                                    <input type="email" class="form-control" aria-required="true" v-model="form.Email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group" style="margin-top:31px">
+                                    <label>الصفة الوظيفية <small style="color:red">* </small></label>
+                                    <el-select style="width: 100%;" v-model="form.UserType" filterable placeholder="الصفة الوظيفية ">
+                                        <el-option v-for="item in UserType"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group pull-left" style="margin-top:31px">
+                                    <br />
+                                    <button class="btn btn-group-toggle" @click.prevent="Back()">رجوع</button>
+                                    <button class="btn btn-outline-info" @click.prevent="Edit()">تعديل البيانات</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                        </div>
+                    </el-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+﻿<div class="card" style="direction: rtl;">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h3 class="card-title" style="float: right;">إضافة مادة دعائية  </h3>
+            </div>
+            <div class="col-md-2" style="direction: ltr;text-align: left">
+                <button class="btn btn-default" @click.prevent="back()">رجوع</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body" style="text-align:right">
+        <br />
+        <br />
+        <!--{{ruleForm}}-->
+
+        <el-form label-position="top"
+                 :model="ruleForm"
+                 :rules="rules"
+                 ref="ruleForm"
+                 label-width="120px"
+                 class="demo-ruleForm">
+            <br />
+
+            <div class="row">
+
+                <!--<div class="col-md-12">
+                    <div class="form-group align-right">
+                        <el-form-item label="إسم تعريفي للمادة الدعائية" prop="Name">
+                            <el-input type="text" placeholder="الاسم"
+                                      v-model="ruleForm.Name"></el-input>
+                        </el-form-item>
+                    </div>
+                </div>-->
+
+                <!--<div class="col-md-3">
+                    <el-form-item label=" نوع المادة الدعائية" prop="MediaType">
+
+
+                        <el-select v-model="ruleForm.MediaType"
+                                   style="width:100%"
+                                   filterable placeholder="نوع الملف المرفق ">
+                            <el-option v-for="item in [
+                                       {id:'3',name:'فيديو'},
+                                       {id:'1',name:'صورة'},
+                                       {id:'4',name:'ملف باور بوينت'},
+                                       ]"
+                                       :key="item.id"
+                                       :label="item.name"
+                                       :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>-->
+                <!--<div class="col-md-3">
+                    <el-form-item label=" نوع المادة الدعائية" prop="Type">
+                        <el-radio v-model="ruleForm.Type" label="1">محتوي دعائي</el-radio>
+                        <el-radio v-model="ruleForm.Type" label="2">شعار</el-radio>
+                    </el-form-item>
+                </div>-->
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <el-form-item label="وصف توضيحي" prop="Descriptions">
+                        <el-input type="textarea"
+                                  :rows="5"
+                                  placeholder="وصف توضيحي"
+                                  v-model="ruleForm.Descriptions">
+                        </el-input>
+                    </el-form-item>
+                    
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row d-flex justify-content-center">
+                <!-- <Uploder end-point="http://localhost:5000/api/admin/MediaCenter/UploadChuncks" :multiple="true"></Uploder>-->
+
+                <el-form-item label="  المرفق" prop="fileList">
+                    <el-upload class="upload-demo"
+                               drag
+                               action="#"
+                               accept="image/jpg,image/png,.pdf,.docx,.xlsx,.csv,.jpg"
+                               :on-remove="handleRemoveFile"
+                               :before-remove="beforeRemove"
+                               :before-upload="onBeforeUpload"
+                               :limit="9999"
+                               :on-exceed="handleExceed"
+                               :auto-upload="false"
+                               :on-change="FileChanged"
+                               multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+                        <div class="el-upload__tip" slot="tip">files with a size less than 500kb</div>
+                    </el-upload>
+                </el-form-item>
+
+            </div>
+            <!--{{ruleForm}}-->
+            <div class="row">
+                <div class="col-md-12" style="direction: ltr;text-align: left">
+                    <button class="btn btn-info" @click.prevent="submitForm('ruleForm')">إضافة البيانات</button>
+                </div>
+            </div>
+            <br />
+
+        </el-form>
+        <!--<el-upload class="upload-demo"
+                   ref="upload"
+                   action="http://localhost:5000/"
+                   :auto-upload="false">
+            <el-button slot="trigger" size="small" type="primary">select file</el-button>
+            <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">upload to server</el-button>
+            <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+        </el-upload>-->
+        <!--<uploader end-point="http://localhost:5000" :multipart="true">
+            <button slot="browse-btn">Select File</button>
+        </uploader>-->
+
+    </div><!-- end content-->
+</div>

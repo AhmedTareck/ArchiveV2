@@ -1,0 +1,207 @@
+﻿
+
+
+<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="content" style="direction:rtl; text-align:right;">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card card-user" style="border-radius: 9px;">
+                                            <div class="image">
+
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="author">
+
+                                                    <div class="img-container">
+                                                        <a :href="'/api/User/' + loginDetails.id + '/image'">
+                                                        <img :src="'/api/User/' + loginDetails.id + '/image'" style="width:50px;" /></a>
+                                                    </div>
+                                                    <div class="form-group UploadButton">
+                                                        <label for="file-upload" class="btn btn-info btn-round">
+                                                            <i class="fa fa-cloud-upload" style="color:white"></i>
+                                                            <span style="color:white">
+                                                                تـغير الصورة
+                                                            </span>
+                                                        </label>
+                                                        <input accept="image/jpg" @change="FileChanged($event)" id="file-upload" type="file" />
+                                                    </div>
+                                                    <h5 class="title">{{loginDetails.loginName}}</h5>
+                                                    <p class="description">
+                                                        الإسم :
+                                                        {{loginDetails.name}}
+                                                    </p>
+                                                </div>
+                                                <p class="description text-center">
+                                                    الصفة :
+                                                    <span v-if="loginDetails.userType==1">
+                                                        مدير النظام
+                                                    </span>
+                                                    <span v-if="loginDetails.userType==2">
+                                                        موظف
+                                                    </span>
+                                                </p>
+                                                <p class="description text-center">
+                                                    رقم الهاتف :
+                                                    {{loginDetails.phone}}
+                                                </p>
+                                                <p class="description text-center">
+                                                    البريد الإلكتروني :
+                                                    {{loginDetails.email}}
+                                                </p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <hr>
+                                                <div class="button-container">
+                                                    <div class="row">
+                                                        <div class="col-lg-8 col-md-6 col-6 ml-auto mr-auto">
+                                                            <h6>
+                                                                {{loginDetails.dateOfBirth | moment}}
+                                                                <br>
+                                                                <small>تاريخ الميلاد</small>
+                                                            </h6>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                                                            <h6>
+                                                                نشط
+                                                                <br>
+                                                                <small>حالة الحساب</small>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card" style="border-radius: 9px;">
+                                            <div class="card-header">
+                                                <h5>تعديل البيانات الشخصي</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <!--{{loginDetails}}-->
+                                                <div class="row" style="padding: 10px; width:100%">
+
+                                                    <el-form label-position="top"
+                                                             :model="ruleForm"
+                                                             :rules="rules"
+                                                             style="width:100%"
+                                                             ref="ruleForm"
+                                                             label-width="120px"
+                                                             class="demo-ruleForm">
+
+
+                                                        <div class="row" style="padding: 10px;">
+                                                            <div class="col-md-5 pr-1">
+                                                                <div class="form-group">
+                                                                    <el-form-item label="الإسم " prop="Name">
+                                                                        <input type="text" style="border-radius: 4px;"
+                                                                               class="form-control"
+                                                                               v-model="ruleForm.Name"
+                                                                               placeholder="الإسم ">
+                                                                    </el-form-item>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 px-1">
+
+                                                                <div class="form-group">
+                                                                    <el-form-item label="اسم الدخول" prop="LoginName">
+                                                                        <input type="text" style="border-radius: 4px;"
+                                                                               class="form-control"
+                                                                               v-model="ruleForm.LoginName"
+                                                                               placeholder="اسم الدخول">
+                                                                    </el-form-item>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 pl-1">
+                                                                <div class="form-group">
+                                                                    <el-form-item label="البريد الإلكتروني" prop="Email">
+                                                                        <input type="email" style="border-radius: 4px;"
+                                                                               class="form-control"
+                                                                               v-model="ruleForm.Email"
+                                                                               placeholder="البريد الإلكتروني">
+                                                                    </el-form-item>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 pl-1">
+                                                                <div class="form-group">
+                                                                    <el-form-item label="رقم الهاتف" prop="Phone">
+                                                                        <input style="border-radius: 4px;"
+                                                                               type="text"
+                                                                               class="form-control"
+                                                                               v-model="ruleForm.Phone"
+                                                                               placeholder="رقم الهاتف">
+                                                                    </el-form-item>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6" style="direction: ltr;text-align: left;margin-top: 42px;">
+                                                                <button class="btn btn-info"
+                                                                        style="margin-top: -2px;"
+                                                                        @click.prevent="submitForm('ruleForm')">
+                                                                    تعديل البيانات
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+
+                                                    </el-form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,285 @@
+﻿<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12 zoomIn">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card" style="direction: rtl;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h3 class="card-title" style="float: right;">ادارة الرصد والاستجابة السريعة
+                                            </h3>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--{{ruleForm}}-->
+                                <div class="card-body" style="text-align:right">
+
+                                    <el-form label-position="top" :model="ruleForm" :rules="rules" ref="ruleForm"
+                                        label-width="120px" class="demo-ruleForm">
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <el-form-item label=" القسم" >
+                                                    <el-select v-model="Type"
+                                                               style="width:100%;"
+                                                               @change="GetDiseases()"
+                                                               filterable placeholder=" القسم">
+                                                        <el-option v-for="item in [{id:1,name:' القسم الأول'},{id:2,name:' القسم التاني'}]"
+                                                                   :key="item.id"
+                                                                   :label="item.name"
+                                                                   :value="item.id">
+                                                        </el-option>
+                                                    </el-select>
+                                                </el-form-item>
+                                            </div>
+                                            
+                                            <div class="col-md-5">
+                                                <el-form-item label=" المرض" prop="DiseaseId">
+                                                    <el-select v-model="ruleForm.DiseaseId" style="width:100%"
+                                                               filterable placeholder="المرض ">
+                                                        <el-option v-for="item in Diseases" :key="item.id"
+                                                                   :label="item.name" :value="item.id">
+                                                            <span style="float: left">{{ item.englishName }}</span>
+                                                            <span style="float: right; color: #8492a6; font-size: 13px">
+                                                                {{
+                                                                item.name
+                                                                }}
+                                                            </span>
+                                                        </el-option>
+                                                    </el-select>
+                                                </el-form-item>
+                                            </div>
+
+                                           
+
+                                            <div class="col-md-5">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="التاريخ" prop="dateOn">
+                                                        <el-date-picker v-model="ruleForm.dateOn" type="date"
+                                                                        style="width:100%" placeholder="التاريخ  ">
+                                                        </el-date-picker>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد الحالات" prop="CountCases">
+                                                        <el-input type="number" placeholder="عدد الحالات"
+                                                                  v-model="ruleForm.CountCases"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد الذكور" prop="Male">
+                                                        <el-input type="number" placeholder="عدد الذكور"
+                                                                  v-model="ruleForm.Male"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد الاناث" prop="Fmale">
+                                                        <el-input type="number" placeholder="عدد الاناث"
+                                                                  v-model="ruleForm.Fmale"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="ليبي الجنسية" prop="Libyan">
+                                                        <el-input type="number" placeholder="ليبي الجنسية"
+                                                            v-model="ruleForm.Libyan"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="اجنبي" prop="NLibyan">
+                                                        <el-input type="number" placeholder="اجنبي"
+                                                            v-model="ruleForm.NLibyan"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد الوفيات" prop="Deaths">
+                                                        <el-input type="number" placeholder="عدد الوفيات"
+                                                            v-model="ruleForm.Deaths"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد المطعمين" prop="VaccinationStatus">
+                                                        <el-input type="number" placeholder="عدد المطعمين"
+                                                            v-model="ruleForm.VaccinationStatus"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="عدد الغير مطعمين" prop="notVaccinationStatus">
+                                                        <el-input type="number" placeholder="عدد الغير مطعمين"
+                                                            v-model="ruleForm.notVaccinationStatus"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <h4>العمر بالسنوات</h4>
+
+                                        <div class="row" style="text-align:center">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="5 >" prop="OverFive">
+                                                        <el-input type="number" v-model="ruleForm.OverFive"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="10 - 5" prop="LessFive">
+                                                        <el-input type="number" v-model="ruleForm.LessFive"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="15 - 10" prop="LessTen">
+                                                        <el-input type="number" v-model="ruleForm.LessTen"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="20 - 15" prop="LessFifteen">
+                                                        <el-input type="number" v-model="ruleForm.LessFifteen">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="row" style="text-align:center">
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="25 - 20" prop="LessTwenty">
+                                                        <el-input type="number" v-model="ruleForm.LessTwenty">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="30 - 25" prop="LessTwentyFive">
+                                                        <el-input type="number" v-model="ruleForm.LessTwentyFive">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="35 - 30" prop="LessThirty">
+                                                        <el-input type="number" v-model="ruleForm.LessThirty">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="40 - 35" prop="LessFiveThirty">
+                                                        <el-input type="number" v-model="ruleForm.LessFiveThirty">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        <div class="row" style="text-align:center">
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="45 - 40" prop="LessForty">
+                                                        <el-input type="number" v-model="ruleForm.LessForty"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="50 - 45" prop="LessFortyFive">
+                                                        <el-input type="number" v-model="ruleForm.LessFortyFive">
+                                                        </el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group align-right">
+                                                    <el-form-item label="50 <" prop="OverFifty">
+                                                        <el-input type="number" v-model="ruleForm.OverFifty"></el-input>
+                                                    </el-form-item>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2"
+                                                style="direction: ltr;text-align: left;margin-top:40px">
+                                                <button class="btn btn-info"
+                                                    @click.prevent="submitForm('ruleForm')">إضافة البيانات</button>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                    </el-form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

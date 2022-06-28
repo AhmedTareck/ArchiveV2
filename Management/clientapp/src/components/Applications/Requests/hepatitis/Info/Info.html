@@ -1,0 +1,203 @@
+﻿
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!--{{selectedItem}}
+            {{Info}}-->
+            <div class="card" style="direction: rtl;" v-if="Info==0">
+                <!--{{item}}-->
+                <div class="card-header">
+                    <div class="row" dir="rtl" style="width:100%;text-align:right">
+
+                        <div class="col-md-12" style="direction: ltr;text-align: left" v-if="index==0">
+                            <button class="btn btn-dark" @click.prevent="back()">رجوع</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body" dir="rtl" style="text-align:right">
+                    <el-alert title="لاتـوجد بيانات في الوقت الحالي  "
+                              type="warning"
+                              show-icon style="font-size:18px!important">
+                    </el-alert>
+
+                </div>
+
+            </div>
+
+
+            <div class="card" style="direction: rtl;" v-for="item,index in Info" v-if="Info!=0">
+                <!--{{item}}-->
+                <div class="card-header">
+                    <div class="row" dir="rtl" style="width:100%;text-align:right">
+
+                        <div class="col-md-5">
+                            تاريخ تعبئة النموذج :
+                            <span style="font-weight:bold">
+                                {{item.createdOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-5">
+                            المستخدم :
+                            <span style="font-weight:bold">
+                                {{item.createdBy}}
+                            </span>
+                        </div>
+                        <div class="col-md-2" style="direction: ltr;text-align: left" v-if="index==0">
+                            <button class="btn btn-dark" @click.prevent="back()">رجوع</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body" dir="rtl" style="text-align:right">
+                    
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+                        <!--<div class="col-md-3">
+                            موجه الي :
+                            <span style="font-weight:bold">
+                                {{item.hospital}}
+                            </span>
+                        </div>-->
+                        <div class="col-md-3">
+                            الوحدة الصحية :
+                            <span style="font-weight:bold">
+                                {{item.unit}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            عنوانها :
+                            <span style="font-weight:bold">
+                                {{item.hospitalLocations}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            الجهة التابع لها :
+                            <span style="font-weight:bold">
+                                {{item.userFrom}}
+                            </span>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            التاريخ :
+                            <span style="font-weight:bold">
+                                {{item.deateOn | moment}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <hr />
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+                        <div class="col-md-4">
+                            اسم المريض :
+                            <span style="font-weight:bold">
+                                {{item.name}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            العمر :
+                            <span style="font-weight:bold">
+                                {{item.age}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            الجنس :
+                            <span style="font-weight:bold" v-if="item.gender==1">
+                                ذكر
+                            </span>
+                            <span style="font-weight:bold" v-if="item.gender==2">
+                                انثي
+                            </span>
+
+                        </div>
+
+
+                    </div>
+                    <hr />
+
+                    <div class="row"  dir="rtl" style="width:100%;margin-top:30px">
+                        <div class="col-md-3">
+                            الجنسية :
+                            <span style="font-weight:bold">
+                                {{item.nationality}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            المدينة :
+                            <span style="font-weight:bold">
+                                {{item.city}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            المحلة:
+                            <span style="font-weight:bold">
+                                {{item.mahla}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            النقطة الدالة:
+                            <span style="font-weight:bold">
+                                {{item.locations}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <hr />
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+                        <div class="col-md-12">
+                            المهنة الحالية ومكان العمل :
+                            <span style="font-weight:bold">
+                                {{item.jobInfo}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <hr />
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+                        <div class="col-md-12">
+                            المرض المشتبه به ورقم التصنيف الدولي :
+                            <span style="font-weight:bold">
+                                {{item.diseaseInfo}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <hr />
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+                        <div class="col-md-4">
+                            تاريخ ظهور المرض :
+                            <span style="font-weight:bold">
+                                {{item.diseaseDateOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            تاريخ اكتشاف الحالة  :
+                            <span style="font-weight:bold">
+                                {{item.findOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            الاجراءات التي تم اتخادها:
+                            <span style="font-weight:bold">
+                                {{item.actionsInfo}}
+                            </span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-md-12" style="direction: ltr;text-align: left" v-if="index==0">
+                        <button class="btn btn-dark" @click.prevent="Print2(item)">طباعة</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

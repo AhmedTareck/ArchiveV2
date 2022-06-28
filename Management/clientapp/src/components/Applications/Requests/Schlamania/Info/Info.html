@@ -1,0 +1,238 @@
+﻿
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" style="direction: rtl;"  v-for="item,index in Info">
+                <div class="card-header">
+                    <div class="row" dir="rtl" style="width:100%;text-align:right" >
+
+                        <div class="col-md-5">
+                            تاريخ تعبئة النموذج :
+                            <span style="font-weight:bold">
+                                {{item.createdOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-5">
+                            المستخدم :
+                            <span style="font-weight:bold">
+                                {{item.createdBy}}
+                            </span>
+                        </div>
+                        <div class="col-md-2" style="direction: ltr;text-align: left" v-if="index==0">
+                            <button class="btn btn-dark" @click.prevent="back()">رجوع</button>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="card-body" dir="rtl" style="text-align:right">
+                    <!--<div class="row" dir="rtl" style="width:100%">
+
+                        <div class="col-md-6">
+                            تاريخ تعبئة النموذج :
+                            <span style="font-weight:bold">
+                                {{item.createdOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            المستخدم :
+                            <span style="font-weight:bold">
+                                {{item.createdBy}}
+                            </span>
+                        </div>
+                    </div>-->
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-3">
+                            اسم المريض:
+                            <span style="font-weight:bold">
+                                {{item.fullName}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            العمر:
+                            <span style="font-weight:bold">
+                                {{item.age}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            الجنس:
+                            <span style="font-weight:bold" v-if="item.gender==1">
+                                ذكر
+                            </span>
+                            <span style="font-weight:bold" v-if="item.gender==2">
+                                انثي
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            الجنسية:
+                            <span style="font-weight:bold">
+                                {{item.nationality}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-3">
+                            تاريخ ظهور المرض:
+                            <span style="font-weight:bold">
+                                {{item.dateOn | moment}}
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            الاماكن التي زراها خلال الشهرين قبل ظهور المرض:
+                            <span style="font-weight:bold">
+                                {{item.lastPleace}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-4">
+                            هل بامكانه تحديد مكان حدوث الاصابة:
+                            <span style="font-weight:bold">
+                                {{item.infectiedPleace}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            مكان الاقامة:
+                            <span style="font-weight:bold">
+                                {{item.locations}}
+                            </span>
+                        </div>
+                        <div class="col-md-2">
+                            مكان العمل:
+                            <span style="font-weight:bold">
+                                {{item.worckPleace}}
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            اي مكان اخر زاره المريض:
+                            <span style="font-weight:bold">
+                                {{item.enyPleace}}
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-6">
+                            هل يوجد في مكان الاقامة والعمل الحالي قوارض:
+                            <span style="font-weight:bold" v-if="item.isRodents==1">
+                                نعم
+                            </span>
+                            <span style="font-weight:bold" v-if="item.isRodents==2">
+                                لا
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            هل يعاني المريض من اي امراض اخري:
+                            <span style="font-weight:bold" v-if="item.isSandTank==1">
+                                نعم
+                            </span>
+                            <span style="font-weight:bold" v-if="item.isSandTank==2">
+                                لا
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-6">
+                            هل توجد اي اصابة في الاسرة او اخرين يعرفهم المصاب:
+                            <span style="font-weight:bold" v-if="item.familyInficted==1">
+                                نعم
+                            </span>
+                            <span style="font-weight:bold" v-if="item.familyInficted==2">
+                                لا
+                            </span>
+                        </div>
+
+                        <div class="col-md-2">
+                            اسم المشتبه به:
+                            <span style="font-weight:bold">
+                                {{item.nameOne}}
+                            </span>
+                        </div>
+                        <div class="col-md-2">
+                            اسم المشتبه به:
+                            <span style="font-weight:bold">
+                                {{item.nameTwo}}
+                            </span>
+                        </div>
+                        <div class="col-md-2">
+                            اسم المشتبه به:
+                            <span style="font-weight:bold">
+                                {{item.nameThree}}
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-4">
+                            العلاجات المستعملة سابقا:
+                            <span style="font-weight:bold">
+                                {{item.lastMidsone}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            التشخيص / سريري:
+                            <span style="font-weight:bold">
+                                {{item.diagnosis}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            التشخيص / مخبري:
+                            <span style="font-weight:bold">
+
+                                {{item.treatment}}
+
+
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="row" dir="rtl" style="width:100%;margin-top:30px">
+
+                        <div class="col-md-4">
+                            اسم المبلغ عن الحالة:
+                            <span style="font-weight:bold">
+                                {{item.informerName}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            الصفة:
+                            <span style="font-weight:bold">
+                                {{item.informerJobDiscriptions}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            التاريخ :
+                            <span style="font-weight:bold">
+                                {{item.dateOn | moment}}
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12" style="direction: ltr;text-align: left" v-if="index==0">
+                    <button class="btn btn-dark" @click.prevent="Print2(item)"> طباعة</button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

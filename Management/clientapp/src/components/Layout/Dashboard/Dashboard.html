@@ -1,0 +1,397 @@
+﻿<div class="sidebar" data-color="blue">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+    <div class="logo">
+        <!--<a href="#" class="simple-text logo-mini">
+            H
+        </a>-->
+        <a href="#" class="simple-text logo-normal" style="margin-left: 67px;">
+            إدارة النماذج | لوحة التحكم
+        </a>
+        <div class="navbar-minimize">
+            <button id="minimizeSidebar" @click.prevent="OpenMenuByToggle()" class="btn btn-outline-white btn-icon btn-round">
+                <i class="now-ui-icons text_align-center visible-on-sidebar-regular"></i>
+                <i class="now-ui-icons design_bullet-list-67 visible-on-sidebar-mini"></i>
+            </button>
+        </div>
+    </div>
+    <div class="sidebar-wrapper" id="sidebar-wrapper" style="overflow-y: auto !important;
+        direction: rtl;">
+        <div class="user">
+            <div class="photo">
+
+                <!--<img class="imageLogo rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtTU5-ZRE_pCkzI1mmVmmKNnmhsVREkba9-89XiCnxyzODr7SYm15_Z6AKEP2blTgOEkM&usqp=CAU" />-->
+                
+                <img class="imageLogo rounded-circle" :src="'/Api/User/' + loginDetails.id + '/image'" />
+                <!--<a :href="'/Api/Admin/User/' + loginDetails.userId + '/image'"><img :src="'/Api/Admin/User/' + loginDetails.userId + '/image'" style="width:50px;" /></a>-->
+
+            </div>
+            <div class="info">
+                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                    <span style="text-align: right;">
+                        {{loginDetails.name}}
+                        <b class="caret"></b>
+                    </span>
+                </a>
+                <div class="clearfix"></div>
+                <div class="collapse" id="collapseExample" style="text-align:right;">
+                    <ul class="nav" style="font-size:20px;">
+                        <li>
+                            <a href="#" @click.prevent="href('/UserProfile',2)">
+                                <span class="sidebar-mini-icon">م ش</span>
+                                <span class="sidebar-normal">الملف الشخصي</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" @click.prevent="href('/ChangePassword',2)">
+                                <span class="sidebar-mini-icon">ت س</span>
+                                <span class="sidebar-normal">تغير الرقم السري</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" @click.prevent="Logout()">
+                                <span class="sidebar-mini-icon">ت خ</span>
+                                <span class="sidebar-normal">تسجيل الخروج</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="nav" style="font-size:20px;">
+            <li :class="menuFlag[0]">
+                <a href="#" @click.prevent="href('/',0)">
+                    <!--<i class="now-ui-icons objects_globe"></i>-->
+                    <i class="material-icons">
+                        home
+                    </i>
+                    <p>الرئـيسـية</p>
+                </a>
+            </li>
+            <!--<li :class="menuFlag[1]">
+        <a data-toggle="collapse" href="#componentsExamples">
+            <i class="now-ui-icons business_bank"></i>
+            <p>
+                المدن <b class="caret"></b>
+            </p>
+        </a>
+        <div class="collapse " id="componentsExamples">
+            <ul class="nav">
+
+                <li :class="menuFlag[8]">
+                    <a href="#" @click.prevent="href('/Cities',8)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>عرض بيانات المدن</p>
+                    </a>
+                </li>
+                <li :class="menuFlag[9]">
+                    <a href="#" @click.prevent="href('/Cities/AddCities',9)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>إضافة مدينة</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+    <li :class="menuFlag[1]">
+        <a data-toggle="collapse" href="#Branches">
+            <i class="now-ui-icons business_bank"></i>
+            <p>
+                الفروع المصرفية <b class="caret"></b>
+            </p>
+        </a>
+        <div class="collapse " id="Branches">
+            <ul class="nav">
+
+                <li :class="menuFlag[8]">
+                    <a href="#" @click.prevent="href('/Branches',8)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>عرض بيانات الفروع</p>
+                    </a>
+                </li>
+                <li :class="menuFlag[9]">
+                    <a href="#" @click.prevent="href('/Branches/AddBranches',9)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>إضافة فرع</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>-->
+            <!--<li :class="menuFlag[1]">
+    <a href="#" @click.prevent="href('/PCS',1)">
+        <i class="material-icons">
+            devices
+        </i>-->
+            <!--<i class="now-ui-icons files_paper"></i>-->
+            <!--<p>ادارة الاجهزة</p>
+        </a>
+    </li>-->
+
+            <li :class="menuFlag[4]">
+                <a data-toggle="collapse" href="#Screens">
+                    <!--<i class="now-ui-icons business_bank"></i>-->
+                    <i class="material-icons">
+                        description
+                    </i>
+                    <p>
+                        ادارة النماذج <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse " id="Screens">
+                    <ul class="nav">
+                        <li :class="menuFlag[5]" >
+                            <a href="#" @click.prevent="href('/Applications',5)">
+                                <i class="material-icons">
+                                    description
+                                </i>
+                                <p> إضافة نموذج</p>
+                            </a>
+                        </li>
+                        <!--<li :class="menuFlag[6]">
+                            <a href="#" @click.prevent="href('/Immediate',6)">
+                                <i class="material-icons">
+                                    description
+                                </i>
+                                <p>  نماذج الرصد الفوري</p>
+                            </a>
+                        </li>-->
+
+                        <li :class="menuFlag[2]" v-if="loginDetails.userType==2">
+                            <a href="#" @click.prevent="href('/Applications/AddApplications',2)">
+                                <i class="material-icons">
+                                    description
+                                </i>
+                                <p> تعبئة نمودج التبليغ</p>
+                            </a>
+                        </li>
+                        <!--<li :class="menuFlag[3]" v-if="loginDetails.userType==2">
+                            <a href="#" @click.prevent="href('/Applications/AddImmediate',3)">
+                                <i class="material-icons">
+                                    description
+                                </i>
+                                <p>نمودج الرصد الفوري</p>
+                            </a>
+                        </li>-->
+                        <!--<li :class="menuFlag[4]">
+                    <a href="#" @click.prevent="href('/Applications/AddApplications',4)">
+                        <i class="material-icons">
+                            description
+                        </i>
+                        <p>طلبات تعبئة نمودج</p>
+                    </a>
+                </li>-->
+                    </ul>
+                </div>
+            </li>
+
+
+            <li :class="menuFlag[1]">
+                <a data-toggle="collapse" href="#Screens1">
+                    <i class="now-ui-icons business_bank"></i>
+                    <p>
+                        ادارة الطلبات <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse " id="Screens1">
+                    <ul class="nav">
+
+                        <li :class="menuFlag[8]">
+                            <a href="#" @click.prevent="href('/Requests',8)">
+                                <i class="now-ui-icons business_bank"></i>
+                                <p>عرض الطلبات </p>
+                            </a>
+                        </li>
+                        <!--<li :class="menuFlag[9]">
+                    <a href="#" @click.prevent="href('/Applications/AddImmediate',9)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>إضافة طلب جديد</p>
+                    </a>
+                </li>-->
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                        <!--<li :class="menuFlag[1]">
+                <a data-toggle="collapse" href="#Screens">
+                    <i class="now-ui-icons business_bank"></i>
+                    <p>
+                        ادارة الاجهزة <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse " id="Screens">
+                    <ul class="nav">
+
+                        <li :class="menuFlag[8]">
+                            <a href="#" @click.prevent="href('/Screens',8)">
+                                <i class="now-ui-icons business_bank"></i>
+                                <p>عرض بيانات الاجهزة</p>
+                            </a>
+                        </li>-->
+                        <!--<li :class="menuFlag[9]">
+                    <a href="#" @click.prevent="href('/Screens/AddScreens',9)">
+                        <i class="now-ui-icons business_bank"></i>
+                        <p>إضافة جهاز</p>
+                    </a>
+                </li>-->
+                        <!--</ul>
+                    </div>
+                </li>-->
+                        <!--<li :class="menuFlag[10]">
+                <a data-toggle="collapse" href="#MediaCenter">-->
+                        <!--<i class="now-ui-icons business_bank"></i>-->
+                        <!--<i class="material-icons">
+                            subscriptions
+                        </i>
+                        <p>
+                            المادة الدعائية <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="MediaCenter">
+                        <ul class="nav">
+
+                            <li :class="menuFlag[12]">
+                                <a href="#" @click.prevent="href('/MediaCenter',12)">
+                                    <i class="material-icons">
+                                        subscriptions
+                                    </i>
+                                    <p>عرض المواد الدعائية </p>
+                                </a>
+                            </li>
+                            <li :class="menuFlag[11]">
+                                <a href="#" @click.prevent="href('/MediaCenter/AddMediaCenter',11)">
+                                    <i class="material-icons">
+                                        subscriptions
+                                    </i>
+                                    <p>إضافة مادة دعائية</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>-->
+                        <!--<li :class="menuFlag[1]">
+                    <a href="#" @click.prevent="href('/',1)">
+                        <i class="now-ui-icons ui-2_chat-round"></i>
+                        <p>المدن</p>
+                    </a>
+                </li>
+                <li :class="menuFlag[2]">
+                    <a href="#" @click.prevent="href('/',2)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>الفروع المصرفية</p>
+                    </a>
+                </li>-->
+                        <!--<li :class="menuFlag[1]">
+                    <a href="#" @click.prevent="href('/BallotBoxs',1)">
+                        <i class="now-ui-icons ui-2_chat-round"></i>
+                        <p>الصناديف الخارجية</p>
+                    </a>
+                </li>
+                <li :class="menuFlag[2]">
+                    <a href="#" @click.prevent="href('/QR200BOXS',2)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>الصناديق الداخلية</p>
+                    </a>
+                </li>
+                <li :class="menuFlag[3]">
+                    <a href="#" @click.prevent="href('/Centers',3)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>الـمراكز</p>
+                    </a>
+                </li>-->
+                        <!--<li :class="menuFlag[4]">
+                    <a href="#" @click.prevent="href('/Voters',4)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>بيانات الناخبين</p>
+                    </a>
+                </li>-->
+                        <!--<li :class="menuFlag[5]">
+                    <a href="#" @click.prevent="href('/AddVoters',5)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>تسجيل ناخب</p>
+                    </a>
+                </li>-->
+
+                        <li :class="menuFlag[14]" v-if="loginDetails.userType==1 || loginDetails.userType==3">
+                            <a href="#" @click.prevent="href('/Reports',14)">
+                                <i class="material-icons">
+                                    analytics
+                                </i>
+                                <p>التقارير</p>
+                            </a>
+                        </li>
+            
+                        <li :class="menuFlag[15]" v-if="loginDetails.userType==1 || loginDetails.userType==3">
+                            <a href="#" @click.prevent="href('/ChartsInfo',15)">
+                                <i class="material-icons">
+                                    pie_chart
+                                </i><p>بيانات إحصائيه</p>
+                            </a>
+                        </li>
+                        
+            
+                        <li :class="menuFlag[17]" >
+                            <a href="#" @click.prevent="href('/MediaCenter',17)">
+                                <i class="material-icons">
+                                    picture_as_pdf
+                                </i>
+                                <p> ادارة المصادر</p>
+                            </a>
+                        </li>
+            
+                        <li :class="menuFlag[13]" v-if="loginDetails.userType==1">
+                            <a href="#" @click.prevent="href('/Users',13)">
+                                <i class="material-icons">
+                                    group
+                                </i>
+                                <p>إدارة المستخذمين</p>
+                            </a>
+                        </li>
+
+                        <!--<li :class="menuFlag[12]" v-if="loginDetails.userType==1">
+                    <a data-toggle="collapse" href="#user">-->
+                        <!--<i class="now-ui-icons business_bank"></i>-->
+                        <!--<i class="material-icons">
+                            group
+                        </i>
+                        <p>
+                            إدارة المستخذمين <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="user">
+                        <ul class="nav">
+
+                            <li :class="menuFlag[13]">
+                                <a href="#" @click.prevent="href('/Users',13)">
+                                    <i class="material-icons">
+                                        group
+                                    </i>
+                                    <p>عرض بيانات المستخذمين </p>
+                                </a>
+                            </li>
+                            <li :class="menuFlag[11]">
+                                <a href="#" @click.prevent="href('/Users/AddUsers',11)">
+                                    <i class="material-icons">
+                                        group
+                                    </i>
+                                    <p>إضافة مستخدم</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>-->
+                        <!--<li :class="menuFlag[6]">
+                    <a href="#" @click.prevent="href('/Users',6)" v-if="loginDetails.userType==1">
+                        <i class="material-icons">
+                            group
+                        </i>
+                        <p>الـمستخدمين</p>
+                    </a>
+                </li>-->
+                    </ul>
+                </div>
+</div>

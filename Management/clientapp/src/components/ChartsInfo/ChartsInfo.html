@@ -1,0 +1,386 @@
+﻿
+<div class="Profiles">
+    <div class="content" style="background-color:lightgray">
+        <div class="panel-header" style="        height: 207px !important;
+        padding-top: 80px;
+        padding-bottom: 45px;
+        background: #141E30;
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 255, 255)), color-stop(60%, rgb(218, 235, 255)), to(rgb(54 76 149)));
+        background-image: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(218, 235, 255) 60%, rgb(54 76 149) 100%) !important;
+">
+        </div>
+        <div class="row DataSet" style="height:100%">
+            <div class="col-md-12 zoomIn">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:right">
+
+                            <div class="card" style="direction: rtl;" v-if="state==0">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4 class="card-title" style="float: right;">بيانات إحصائيه </h4>
+
+
+                                        </div>
+                                        <!--<div class="col-md-2" style="text-align: left;">
+                                            <button class="btn btn-primary" @click.prevent="addUser()">
+                                                <i class="fa fa-plus"></i>
+                                                اضـافة مـستخدم
+                                            </button>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+
+
+                                    <br />
+                                    <br />
+                                    <!--{{ByHospital}}-->
+                                    <!--{{Info}}
+    {{LineChartsInfo}}-->
+                                    <!--{{date2}}-->
+                                    <div class="row" v-if="loginDetails.userType==1 || loginDetails.userType==3">
+
+                                        <div class="col-md-2">
+                                            <el-select v-model="Type"
+                                                       style="width:100%;"
+                                                       @change="GetDiseases()"
+                                                       filterable placeholder=" القسم">
+                                                <el-option v-for="item in [{id:1,name:' القسم الأول'},{id:2,name:' القسم التاني'}]"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <el-select v-model="DiseaseId"
+                                                       style="width:100%;"
+                                                       @change="Search()"
+                                                       filterable placeholder=" قائمة الامراض">
+                                                <el-option v-for="item in Diseases"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <el-select v-model="MunicipalitieId"
+                                                       style="width:100%;"
+                                                       @change="GetHospitalsName()"
+                                                       filterable placeholder="موقع الرصد">
+                                                <el-option v-for="item in Municipalitie"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                            <el-select v-model="HospitalId"
+                                                       style="width:100%;"
+                                                       @change="Search()"
+                                                       filterable placeholder="المستشفي">
+                                                <el-option v-for="item in Hospitals"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                        <div class="col-md-2" dir="rtl" style="text-align:right;width:100%">
+                                            <div class="block">
+                                                <el-date-picker style="width:100%"
+                                                                v-model="date1"
+                                                                type="date"
+                                                                placeholder="من">
+                                                </el-date-picker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" dir="rtl" style="text-align:right;width:100%">
+                                            <div class="block">
+                                                <el-date-picker style="width:100%"
+                                                                v-model="date2"
+                                                                type="date"
+                                                                placeholder="الي">
+                                                </el-date-picker>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />  
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group" style="margin-top:-10px;text-align:left">
+                                                <button class="btn btn-warning" @click.prevent="Search()">بحت</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <div class="toolbar">
+                                    </div>
+                                    <el-alert v-if="Info==0"
+                                              title="لا توجد بيانات لعرضها في الوقت الحالي "
+                                              type="warning"
+                                              show-icon style="font-size:18px!important">
+                                    </el-alert>
+
+
+
+
+
+                                    <div class="row" v-if="Info!=0">
+                                        <div class="col-md-12">
+                                            <donut-chart id="donut"
+                                                         :data="Info"
+                                                         colors='[ "#FF6384", "#36A2EB", "#FFCE56"]'
+                                                         resize="true">
+                                            </donut-chart>
+                                        </div>
+
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <br />
+
+
+                                    <br v-if="Info!=0" />
+                                    <br v-if="Info!=0" />
+
+                                    <h4 dir="rtl" v-if="Info!=0">
+                                        توزيع المرض على مواقع الرصد
+                                    </h4>
+
+
+                                    <div class="row" v-if="Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar"
+                                                       :data="ByHospital"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <br v-if="Info!=0" />
+                                    <br v-if="Info!=0" />
+
+                                    <h4 dir="rtl" v-if="Info!=0">
+                                        توزيع المرض على الاشهر
+                                    </h4>
+
+
+                                    <div class="row" v-if="Info!=0">
+                                        <div class="col-md-12">
+
+                                            <line-chart id="line"
+                                                        :data="donutData3"
+                                                        xkey="year"
+                                                        ykeys='[ "a", "b" ]'
+                                                        line-colors='[ "#FF6384", "#36A2EB" ]'
+                                                        grid="true"
+                                                        grid-text-weight="bold"
+                                                        resize="true">
+                                            </line-chart>
+                                            <line-chart id="line"
+                                                        :data="donutData3"
+                                                        xkey="dayInfo"
+                                                        ykeys='
+                                                        [
+                                                        "countCases",
+                                                        "male",
+                                                        "fmale",
+                                                        "libyan",
+                                                        "nLibyan",
+                                                        "deaths",
+                                                        "overFive",
+                                                        "lessFive",
+                                                        "lessTen",
+                                                        "lessFifteen",
+                                                        "lessTwenty",
+                                                        "lessTwentyFive",
+                                                        "lessThirty",
+                                                        "lessFiveThirty",
+                                                        "lessForty",
+                                                        "lessFortyFive",
+                                                        "overFifty",
+                                                        ]'
+                                                        line-colors='[
+                                                        "#FF6384",
+                                                        "#36A2EB",
+                                                        "#FFCE56",
+                                                        "#E6B0AA",
+                                                        "#8E44AD",
+                                                        "#16A085",
+                                                        "#73C6B6",
+                                                        "#7DCEA0",
+                                                        "#566573",
+                                                        "#641E16",
+                                                        "#E74C3C",
+                                                        "#F4D03F",
+                                                        "#F0B27A",
+                                                        "#5D6D7E",
+                                                        "#2E4053",
+                                                        "#F5B041",
+                                                        "#F5B041",
+                                                        ]'
+                                                        grid="true"
+                                                        grid-text-weight="bold"
+                                                        resize="true">
+                                            </line-chart>
+
+                                        </div>
+                                    </div>
+
+
+                                    <br v-if="Info!=0" />
+                                    <br v-if="Info!=0" />
+
+                                    <h4 dir="rtl" v-if="Info!=0">
+                                        توزيع حسب المرض
+                                    </h4>
+
+                                    <div class="row" v-if="Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar1"
+                                                       :data="Info"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56"]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+                                    <br v-if="ByAge!=0 && Info!=0 " />
+                                    <br v-if="ByAge!=0" />
+
+                                    <h4 dir="rtl" v-if="ByAge!=0  && Info!=0">
+                                        توزيع المرض على الفئات العمرية
+                                    </h4>
+
+                                    <div class="row" v-if="ByAge!=0  && Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar12"
+                                                       :data="ByAge"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+                                    <br v-if="byNat!=0  && Info!=0" />
+                                    <br v-if="byNat!=0  && Info!=0" />
+
+                                    <h4 dir="rtl" v-if="byNat!=0  && Info!=0">
+                                        توزيع المرض على الجنسية
+                                    </h4>
+
+                                    <div class="row" v-if="byNat!=0  && Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar11"
+                                                       :data="byNat"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+
+                                    <br v-if="byVaccivations!=0  && Info!=0" />
+                                    <br v-if="byVaccivations!=0  && Info!=0" />
+
+                                    <h4 dir="rtl" v-if="byVaccivations!=0  && Info!=0">
+                                        توزيع المرض حسب حالة التطعيم
+                                    </h4>
+
+                                    <div class="row" v-if="byVaccivations!=0  && Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar10"
+                                                       :data="byVaccivations"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+
+                                    <br v-if="byGender!=0  && Info!=0" />
+                                    <br v-if="byGender!=0  && Info!=0" />
+
+                                    <h4 dir="rtl" v-if="byGender!=0  && Info!=0">
+                                        توزيع المرض على الجنس
+                                    </h4>
+
+                                    <div class="row" v-if="byGender!=0  && Info!=0">
+                                        <div class="col-md-12">
+                                            <bar-chart id="bar18"
+                                                       :data="byGender"
+                                                       xkey="label"
+                                                       ykeys='[ "value"]'
+                                                       bar-colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]'
+                                                       grid="true"
+                                                       grid-text-weight="bold"
+                                                       resize="true">
+                                            </bar-chart>
+                                        </div>
+                                    </div>
+
+
+                                    <!--{{Info}}-->
+
+
+
+
+
+
+
+
+
+                                </div><!-- end content-->
+                            </div><!--  end card  -->
+                        </div> <!-- end col-md-12 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
